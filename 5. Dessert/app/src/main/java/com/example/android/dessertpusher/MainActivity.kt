@@ -1,18 +1,3 @@
-/*
- * Copyright 2018, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.example.android.dessertpusher
 
@@ -44,14 +29,9 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     /** Dessert Data **/
     private lateinit var dessertTimer: DessertTimer
 
-    /**
-     * Simple data class that represents a dessert. Includes the resource id integer associated with
-     * the image, the price it's sold for, and the startProductionAmount, which determines when
-     * the dessert starts to be produced.
-     */
+
     data class Dessert(val imageId: Int, val price: Int, val startProductionAmount: Int)
 
-    // Create a list of all desserts, in order of when they start being produced
     private val allDesserts = listOf(
             Dessert(R.drawable.cupcake, 5, 0),
             Dessert(R.drawable.donut, 10, 5),
@@ -98,9 +78,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     }
 
-    /**
-     * Updates the score when the dessert is clicked. Possibly shows a new dessert.
-     */
+
     private fun onDessertClicked() {
 
         // Update the score
@@ -114,32 +92,24 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         showCurrentDessert()
     }
 
-    /**
-     * Determine which dessert to show.
-     */
+
     private fun showCurrentDessert() {
         var newDessert = allDesserts[0]
         for (dessert in allDesserts) {
             if (dessertsSold >= dessert.startProductionAmount) {
                 newDessert = dessert
             }
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
+
             else break
         }
 
-        // If the new dessert is actually different than the current dessert, update the image
         if (newDessert != currentDessert) {
             currentDessert = newDessert
             binding.dessertButton.setImageResource(newDessert.imageId)
         }
     }
 
-    /**
-     * Menu methods
-     */
+
     private fun onShare() {
         val shareIntent = ShareCompat.IntentBuilder.from(this)
                 .setText(getString(R.string.share_text, dessertsSold, revenue))

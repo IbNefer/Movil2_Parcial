@@ -5,10 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-/**
- * Created by Mayokun Adeniyi on 2019-11-03.
- */
-
 class ScoreViewModel (score: Int) : ViewModel(){
 
     //The final score

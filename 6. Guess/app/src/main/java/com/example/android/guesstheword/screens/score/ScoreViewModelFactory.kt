@@ -5,9 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
 
 
-/**
- * Created by Mayokun Adeniyi on 2019-11-03.
- */
 
 class ScoreViewModelFactory (private val finalScore: Int) : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
